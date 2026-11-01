@@ -29,21 +29,13 @@ export const metadata: Metadata = {
     icon: [
       {
         url: "/Assets/Logos/Icon_Dark.svg",
-        media: "(prefers-color-scheme: light)",
-      },
-      {
-        url: "/Assets/Logos/Icon_Light.svg",
-        media: "(prefers-color-scheme: dark)",
+        type: "image/svg+xml",
       },
     ],
     apple: [
       {
         url: "/Assets/Logos/Icon_Dark.svg",
-        media: "(prefers-color-scheme: light)",
-      },
-      {
-        url: "/Assets/Logos/Icon_Light.svg",
-        media: "(prefers-color-scheme: dark)",
+        type: "image/svg+xml",
       },
     ],
   },

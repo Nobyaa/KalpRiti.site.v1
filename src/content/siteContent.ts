@@ -1,7 +1,7 @@
 export const siteContent = {
   brand: {
     name: "KalpRiti",
-    tagline: "A founder-led creative studio",
+    tagline: "We change the way complex products are marketed",
     descriptor: "founder-led creative studio",
     coreIdea: "KalpRiti designs the story, the interaction, and the next step as one connected campaign experience.",
   },
@@ -25,14 +25,20 @@ export const siteContent = {
   },
   home: {
     hero: {
-      headline: "Your product does more than your customers understand.",
+      badge: "Founder-Led Creative Studio",
+      headline: "We change the way complex products are marketed.",
       subhead:
-        "KalpRiti is a founder-led creative studio. We build campaign experiences where the story, the interaction and the next step are designed together, so people see why your product matters to them.",
+        "For founders of smart home, consumer electronics, and premium tech. We build Interadaptive Campaigns—cinematic advertising that continues into an interactive experience, adapting to what each buyer cares about most.",
+      sectors: [
+        "Smart Home & Automation",
+        "Consumer Electronics",
+        "Premium Hardware",
+        "Complex Consumer Tech",
+      ],
       buttons: {
         primary: { label: "Discuss a Campaign", href: "/contact" },
-        secondary: { label: "Explore the Interactive Experience", href: "#demo" },
+        secondary: { label: "Try the Interadaptive Demo ↓", href: "#demo" },
       },
-      alternateHeadline: "People are looking at your product. Are they understanding it?",
     },
     theGap: {
       heading: "The gap shows up in ordinary places.",
@@ -70,86 +76,106 @@ export const siteContent = {
         "The interactive part isn't added after the creative is finished. The story decides what a person explores. What they explore decides what they learn, and what they're offered next.",
     },
     demo: {
-      heading: "Try it. Pick the one that sounds most like you.",
+      badge: "Live Methodology Demo",
+      heading: "See an Interadaptive Campaign in action.",
+      lead: "Conventional landing pages show the exact same 20 features to everyone. An Interadaptive Campaign adapts its story, demonstrations, and next step to what the visitor explicitly chooses.",
+      scenario: "Product Scenario: Luxury Smart Living & Automation Hardware",
       choices: [
         {
           id: 1,
-          label: "We're preparing for a product launch.",
-          focusTitle: "Launch Strategy & Focus",
-          response:
-            "You have something worth explaining, and a date. The risk is a launch that lists features when customers need a reason to care. We'd start with the narrative: what's the one thing a customer should understand first, and what should they discover for themselves? Then we'd build the experience that carries it.",
-          linkText: "See this in our Keus concept (POC) →",
-          linkHref: "/work",
-          buttonLabel: "Discuss a Campaign",
-          buttonHref: "/contact?intent=launch",
+          label: "Home Security & Family Safety",
+          persona: "Working Parent · Frequent Traveler",
+          hook: "What happens to your home when you're 5,000 miles away?",
+          narrative:
+            "Instead of browsing light dimming presets, this buyer receives immediate answers to their vulnerability: simulated presence lighting, instant perimeter alert logs, and backup failover during power outages.",
+          adaptiveProtocols: [
+            "Child Arrival Push Alert Logs",
+            "24/7 Offline Security Mesh Network",
+            "Geofenced Nighttime Perimeter Locking",
+          ],
+          actionLabel: "Request Home Security Consultation →",
+          actionHref: "/contact?intent=security-focus",
         },
         {
           id: 2,
-          label: "People click, but don't understand the product.",
-          focusTitle: "Communication Breakdown",
-          response:
-            "The ad worked. The page didn't. Visitors arrive curious and meet the same overview as everyone else, so they leave, or they enquire without knowing what they're asking about. We'd replace the single page with an experience where each choice decides what comes next, so people reach the part of your product that matters to them.",
-          linkText: "See this in our Keus concept (POC) →",
-          linkHref: "/work",
-          buttonLabel: "Discuss a Communication Challenge",
-          buttonHref: "/contact?intent=communication-challenge",
+          label: "Architectural Design & Clean Walls",
+          persona: "Interior Architect · Luxury Homeowner",
+          hook: "High technology shouldn't ruin handcrafted Italian marble walls.",
+          narrative:
+            "This buyer doesn't care about software protocols. The campaign adapts to highlight flush-mounted solid brass keypads, concealed conduits, and custom architectural color matching.",
+          adaptiveProtocols: [
+            "Flush Precision Milling Specifications",
+            "Custom RAL & Metallic Finish Swatches",
+            "Zero Wall-Acne Concealed Actuators",
+          ],
+          actionLabel: "Request Architect Swatch Kit →",
+          actionHref: "/contact?intent=architectural-design",
         },
         {
           id: 3,
-          label: "Customers compare us mainly on price.",
-          focusTitle: "Value Invisibility",
-          response:
-            "When value is invisible, price is all that's left to compare. A feature list can't show why a premium product is worth more. An experience can: it lets people explore the situations where the difference matters to them, in their own order.",
-          linkText: "See this in our Keus concept (POC) →",
-          linkHref: "/work",
-          buttonLabel: "Discuss a Campaign",
-          buttonHref: "/contact?intent=price-comparison",
+          label: "Whole-Home Automation & Energy",
+          persona: "Tech Enthusiast · Sustainability Lead",
+          hook: "Intelligence that cuts energy consumption without manual tweaking.",
+          narrative:
+            "The experience shifts to dynamic solar-sync harvesting, automated thermal curtain scheduling, and real-time kW consumption graphs across individual living zones.",
+          adaptiveProtocols: [
+            "Dynamic Daylight Harvesting Sensors",
+            "Smart HVAC Thermal Load Balancing",
+            "Sub-circuit Real-time Power Telemetry",
+          ],
+          actionLabel: "Explore Energy Configurator →",
+          actionHref: "/contact?intent=automation-energy",
         },
         {
           id: 4,
-          label: "We're scaling beyond founder-led selling.",
-          focusTitle: "Scaling the Explanation",
-          response:
-            "Right now you or your team explain the product, and it works. That doesn't scale. We'd turn the way you explain it in the room into an experience that does the same job without you there: it asks what matters, shows the relevant part, and suggests a sensible next step.",
-          linkText: "See this in our Keus concept (POC) →",
-          linkHref: "/work",
-          buttonLabel: "Discuss a Campaign",
-          buttonHref: "/contact?intent=scaling",
+          label: "Effortless Daily Living & Convenience",
+          persona: "Multi-Generational Family Homeowner",
+          hook: "A home that understands elderly parents and children alike.",
+          narrative:
+            "No apps or complicated sub-menus. The campaign demonstrates single-tap magnetic scenes, voice failover, and intuitive tactile dials that anyone can use naturally from day one.",
+          adaptiveProtocols: [
+            "Tactile Magnetic Scene Dials",
+            "Zero-Learning-Curve Physical Feedback",
+            "Gentle Nighttime Pathway Illumination",
+          ],
+          actionLabel: "Discuss Family Home Setup →",
+          actionHref: "/contact?intent=daily-convenience",
         },
       ],
       explainer: {
-        title: "What just happened.",
-        text: "An interactive experience lets people explore. An interadaptive one changes what they see, learn or do next based on the choices they make. You made one choice, and the page rearranged itself around it. We design that for products that are hard to explain.",
+        title: "What just happened:",
+        text: "A standard interactive page lets people click around static elements. An interadaptive campaign reorganizes what the customer sees, learns, and does next based on the choices they make. One campaign. Zero guesswork. Significantly higher conversion.",
       },
-      disclaimer: "Nothing here is tracked to decide what you see. It responds only to what you pick.",
+      disclaimer: "Built with transparent, choice-based adaptation. No hidden cookies or behavioral tracking.",
     },
     workPreview: {
       heading: "One concept, labelled honestly.",
       text: "We built a smart-home campaign experience for Keus, without a client brief, to show how we'd approach a product that's hard to explain. It's a proof of concept, not client work, and we won't present it as anything else.",
-      link: { label: "See the concept →", href: "/work" },
-      tag: "POC. A self-initiated concept, not client work.",
+      link: { label: "See the concept & breakdown →", href: "/work" },
+      tag: "POC · A self-initiated concept, not client work.",
     },
     whatWeMake: {
-      heading: "Three ways to work with us.",
+      heading: "How we work together.",
       offers: [
         {
-          title: "Campaign Strategy Sprint",
-          desc: "The thinking, before anything is built.",
+          title: "Strategy & Narrative Blueprint",
+          desc: "The thinking, positioning, and adaptive blueprint before anything is built.",
         },
         {
-          title: "Interactive Campaign Experience",
-          desc: "The campaign, built.",
+          title: "The Interadaptive Campaign Experience",
+          desc: "Our flagship engagement: narrative film, custom 3D/adaptive digital build, and conversion paths.",
+          flagship: true,
         },
         {
           title: "Campaign Growth Partner",
-          desc: "What happens after launch.",
+          desc: "Continuous iterative optimization and path refinement after campaign launch.",
         },
       ],
-      link: { label: "See what's included →", href: "/what-we-do" },
+      link: { label: "Explore scope and deliverables →", href: "/what-we-do" },
     },
     whereWeAre: {
       heading: "We're early. We'd rather show you than list clients.",
-      body: "KalpRiti is a young, founder-led creative studio. We're building this approach through working concepts and experiments, starting with interactive campaign experiences. You won't find a wall of logos or performance claims here. What we can show is how we think and what we build.",
+      body: "KalpRiti is a young, founder-led creative studio. We're developing this approach through working concepts and experiments, starting with interadaptive campaign experiences. You won't find a wall of logos or performance claims here. What we can show is how we think and what we build.",
     },
     closingCta: {
       heading: "Have a product that deserves a better explanation?",
@@ -158,62 +184,64 @@ export const siteContent = {
   },
   whatWeDo: {
     header: {
-      heading: "Three ways to work with us.",
+      heading: "How we work with founders.",
       subhead:
-        "Start with the thinking, build the experience, or keep improving it after launch. We talk through scope and investment on a call, once we understand what you're trying to do.",
+        "Start with the strategic narrative blueprint, or build the complete flagship interadaptive experience. We scope investment individually on a call once we understand your product.",
     },
     offers: [
       {
-        id: "sprint",
-        num: "01",
-        title: "Campaign Strategy Sprint",
-        subtitle:
-          "For teams who know there's a communication gap and want a clear plan before anything is built.",
-        included: [
-          "Alignment on the objective and the audience",
-          "A review of how the product is communicated today",
-          "Insight and messaging direction",
-          "A campaign narrative",
-          "Creative direction",
-          "A blueprint for the interactive experience",
-        ],
-        notIncluded: [
-          "Building the experience, production, media buying, ongoing execution. We scope those separately if you want them.",
-        ],
-      },
-      {
         id: "experience",
-        num: "02",
-        title: "Interactive Campaign Experience",
+        num: "01",
+        title: "The Interadaptive Campaign Experience",
+        flagship: true,
+        tag: "FLAGSHIP ENGAGEMENT",
         subtitle:
-          "For teams with a launch, campaign or acquisition goal who want it built, not just planned.",
+          "For founders with a launch, campaign or revenue goal who want a complete, high-converting campaign system built—not just planned.",
         included: [
-          "Strategy and narrative",
-          "A campaign concept and creative direction",
-          "Concepts for how people arrive (the ad, the film, the link)",
-          "One core interactive experience",
-          "Agreed paths through it, with next steps matched to each",
-          "An analytics plan, with setup where we have access",
-          "Testing and launch support",
+          "Core narrative strategy & campaign positioning",
+          "Cinematic campaign film concept and creative direction",
+          "One custom Interadaptive web experience (responsive, mobile-first WebGL/3D)",
+          "Choice-based multi-path architecture (tailored to your key buyer personas)",
+          "Conversion paths and next steps matched to what each visitor explores",
+          "Full event analytics setup & conversion tracking plan",
+          "Testing, launch deployment, and performance handover (4–6 week timeline)",
         ],
         notIncluded: [
-          "Media spend or media buying, extensive production, complex CRM or backend integrations, hosting and software costs, unlimited revisions, and additional audiences or objectives beyond what we agree.",
+          "Paid media buying spend, excessive production crews, backend ERP/CRM rebuilds, unlimited revisions beyond agreed scope.",
         ],
         noteOnExisting:
-          "A product film, campaign or landing page can stay as the entry point if it works. We'd only suggest redoing it if it's fundamentally unclear.",
+          "An existing product film, 3D asset, or landing page can be integrated as the entry point if it already works. We only rebuild what is fundamentally unclear.",
+      },
+      {
+        id: "sprint",
+        num: "02",
+        title: "Strategy & Narrative Blueprint",
+        tag: "STRATEGY SPRINT",
+        subtitle:
+          "For leadership teams who know there's a communication gap and want a clear narrative and experience blueprint before entering production.",
+        included: [
+          "Alignment on business objective, buyer personas, and drop-off points",
+          "A comprehensive audit of how the product is communicated today",
+          "Core messaging direction and category differentiation",
+          "The campaign narrative script and creative concept",
+          "Information architecture and wireframe blueprint for the adaptive experience",
+        ],
+        notIncluded: [
+          "Production code, 3D development, ad filming, or media management (scoped separately if you proceed to build).",
+        ],
       },
       {
         id: "growth",
         num: "03",
         title: "Campaign Growth Partner",
+        tag: "POST-LAUNCH PARTNERSHIP",
         subtitle:
-          "For teams who've launched and want to keep improving what they've built. It usually follows an initial campaign or experience.",
+          "For teams who have launched their campaign experience and want continuous quarterly iteration and path optimization based on live visitor data.",
         included: [
-          "Ongoing campaign planning",
-          "A defined round of improvements to the campaign or experience",
-          "Narrative and creative development",
-          "Refinements to the paths, interactions and next steps",
-          "A review of how it's performing, based on the data available",
+          "Ongoing campaign path refinement and A/B branch testing",
+          "Creative narrative iterations for seasonal launches or new features",
+          "Quarterly review of engagement depth and drop-off analytics",
+          "Direct founder advisory on customer communication",
         ],
         notIncluded: [
           "Media buying, unlimited creative volume, extensive production, guaranteed performance.",
@@ -222,23 +250,22 @@ export const siteContent = {
     ],
     whatWeDontPromise: {
       heading: "What we don't promise",
-      text: "We don't promise results. We can't honestly tell you what a campaign will do for your sales before it has been tested. We'll agree what to measure up front, and we'll be straight with you about what the numbers show.",
+      text: "We don't promise fabricated results. We cannot honestly tell you what a campaign will generate before it has been tested with real buyers. What we do promise is radical clarity: we agree on what to measure up front, and we will be completely straight with you about what the data shows.",
     },
     qualification: {
       whoThisIsFor: [
-        "You sell a valuable product that's hard to explain: technical, unfamiliar, premium, or with several different uses.",
-        "Customers need time to understand, compare or involve others before they buy.",
-        "You have a real launch, campaign or acquisition goal.",
-        "A decision-maker or champion is involved.",
-        "You're ready to invest in strategy and a custom experience, and to share what you know about your product.",
+        "You sell a valuable product that's hard to explain: premium smart home hardware, consumer electronics, or high-consideration tech.",
+        "Customers need time to understand, compare or involve family/team members before they buy.",
+        "You have a real launch, campaign or revenue milestone.",
+        "A founder, executive, or key decision-maker is directly involved.",
+        "You're ready to invest in a differentiated campaign and share what you know about your product.",
       ],
       whoItIsNotFor: [
-        "You need routine social posts, ad creatives or low-cost design.",
-        "You see creativity as decoration, or want interactivity added without a reason.",
-        "You need guaranteed conversions or revenue.",
-        "You expect strategy, creative and a custom build on a very small budget, or in a few days.",
-        "You can't involve the people who make the decision.",
-        "Your product is a quick, low-consideration purchase, where customers decide in seconds.",
+        "You need routine social media posts, low-cost banner graphics, or generic SEO blogs.",
+        "You see creativity as decoration, or want 3D interactivity added without a clear communication reason.",
+        "You need guaranteed instant conversions or fabricated revenue claims.",
+        "You expect high-end strategy, creative, and custom software in 48 hours on a minimal budget.",
+        "Your product is a quick impulse purchase where buyers decide in 3 seconds.",
       ],
     },
     process: {
@@ -246,23 +273,23 @@ export const siteContent = {
       steps: [
         {
           num: "1",
-          name: "Understand",
-          desc: "We learn the product, the buyer and where understanding breaks down.",
+          name: "Diagnose",
+          desc: "We study the product, dissect where customer understanding breaks down, and define the core narrative hook.",
         },
         {
           num: "2",
-          name: "Shape the story",
-          desc: "We decide what customers should understand first, and what they should discover.",
+          name: "Shape the Architecture",
+          desc: "We map the visitor choices and write the adaptive narrative branches for each buyer persona.",
         },
         {
           num: "3",
-          name: "Build the experience",
-          desc: "The campaign and the interaction are designed and made together.",
+          name: "Build the Experience",
+          desc: "The film concept, 3D interaction, and conversion paths are engineered together as one unified engine.",
         },
         {
           num: "4",
-          name: "Learn",
-          desc: "We look at what the data shows and decide what to change.",
+          name: "Launch & Measure",
+          desc: "We deploy the campaign, track which choices visitors explore, and refine the path to conversion.",
         },
       ],
     },
@@ -271,28 +298,28 @@ export const siteContent = {
     header: {
       heading: "Work and experiments.",
       subhead:
-        "We're early. Rather than a list of clients, here's a concept we built to show how we think.",
+        "We're early. Rather than a list of logos, here is a working concept we built to demonstrate how we think.",
     },
     concept: {
       title: "Keus Smart Home",
-      tag: "POC. A self-initiated concept, not client work.",
+      tag: "POC · A self-initiated concept, not client work.",
       challengeHeading: "The challenge we explored",
       challenge:
-        "Smart-home ads tend to look alike: premium visuals, a list of features, a lifestyle. But when we looked at what people actually worry about before buying, features weren’t the concern. They wanted to know: Will it break after installation? What happens after the sale? And what will this cost for my home? They want a rough number immediately, not after a sales call. We turned that insight into a story, “Test Your Absence,” built on the bond between a child and an elderly parent. Then we carried that story from an ad film into an interactive experience.",
+        "Smart-home ads tend to look alike: sleek renders, a list of features, and an affluent lifestyle. But when we looked at what people actually worry about before buying luxury home automation, features weren’t the real concern. They wanted to know: Will it break after installation? What happens after the sale? And what will this cost for my home? We turned that insight into an emotional story, 'Test Your Absence,' built on the bond between a child and an elderly parent. Then we carried that story directly into an interadaptive digital experience.",
       thinkingHeading: "The thinking",
       thinking:
-        "The biggest concern wasn’t features, or even price. It was what happens after the sale. So the experience doesn’t open with a spec sheet. It opens with an emotional story, then asks the visitor questions, shows the difference the product makes for them, and answers the concerns people have before they have to raise them.",
+        "The biggest hurdle wasn't feature specs, or even initial price—it was trust in post-installation reliability. So the experience doesn't open with an intimidating spec sheet. It opens with an emotional story, invites the visitor to explore what matters to their lifestyle, and answers their unspoken hesitations before they have to ask.",
       whatItShowsHeading: "What it shows",
       whatItShows: [
-        "How a campaign story can decide what a visitor explores",
-        "How different choices can lead to different next steps",
-        "A working demonstration of our approach",
+        "How a cinematic campaign story decides what a visitor explores",
+        "How different visitor choices lead to tailored, relevant next steps",
+        "A working demonstration of our interadaptive methodology in code and 3D",
       ],
       whatItDoesNotShowHeading: "What it doesn't show",
       whatItDoesNotShow:
-        "Sales, conversion or lead-quality results. It was built as a concept.",
+        "Sales, conversion or lead-quality results. It was built as a self-initiated concept to prove the approach.",
     },
-    footerNote: "More experiments will be added here as they're ready.",
+    footerNote: "More experiments and proof of concepts will be added here as they are deployed.",
   },
   about: {
     header: {
@@ -300,21 +327,21 @@ export const siteContent = {
     },
     story: {
       paragraphs: [
-        "I'm Vaibhav Kumbhar, the founder of KalpRiti. I started as a graphic designer, and moved through creative work and marketing into building agencies.",
-        "Across that work I kept seeing the same thing: good products explained badly. Not because anyone was careless, but because a film, an ad and a landing page rarely behave like one piece of communication. The customer is left to connect them.",
-        "KalpRiti is my answer to that. Design the story, the interaction and the next step together, so people understand why a product matters to them.",
-        "I also run Kanbharu, a local marketing agency.",
+        "I'm Vaibhav Kumbhar, the founder of KalpRiti. I began as a designer and creative director, moving through brand strategy, production, and technology into leading creative campaigns.",
+        "Across that work I kept witnessing the exact same breakdown: innovative, high-value products explained badly. Not because the teams were careless, but because conventional advertising treats films, ads, and landing pages as disjointed silos. The customer is left to connect the dots.",
+        "KalpRiti is my answer to that problem. We design the advertising narrative and the interactive digital environment together—so complex products become immediately understandable, desirable, and trusted.",
+        "I have spent years building creative systems and marketing campaigns for growing companies. That hands-on experience revealed the exact bottleneck: good products explained badly because advertising films and landing pages rarely speak the same language.",
       ],
     },
     beliefs: {
       heading: "What we believe",
-      text: "Creativity should do more than capture attention. It should help people think, feel, understand and act. Brands should mean more, and experiences should do more.",
+      text: "Creativity should do more than capture fleeting attention. It should help people think, feel, understand and act. Brands should mean more, and experiences should do more.",
     },
     whereWeAre: {
       heading: "Where we are",
       paragraphs: [
-        "We're a young, founder-led creative studio. We're developing our approach through working concepts and experiments, starting with interactive campaign experiences. We're early, so we won't pretend to have a long list of case studies or performance claims.",
-        "KalpRiti is small and founder-led. When a project needs other specialists, we'll say so, and we'll tell you who's involved.",
+        "We're a young, founder-led creative studio. We develop our approach through working concepts and experiments, starting with interadaptive campaign experiences. We're early, so we won't pretend to have a wall of client logos or unverified metrics.",
+        "KalpRiti is small and founder-led. When a campaign requires specialized 3D artists, film directors, or sound designers, we assemble the right talent transparently, and you always work directly with me.",
       ],
     },
   },
@@ -322,18 +349,18 @@ export const siteContent = {
     header: {
       heading: "Discuss a campaign.",
       subhead:
-        "Tell us what you're trying to communicate. I'll read it and reply personally within 24 hours.",
+        "Tell us what you make and what you are trying to communicate. I'll read it and reply personally within 24 hours to schedule a 30-minute discovery call.",
     },
     fields: {
-      name: { label: "Your name", placeholder: "e.g. Vaibhav Kumbhar" },
+      name: { label: "Your name & role", placeholder: "e.g. Vaibhav, Founder" },
       email: {
         label: "Work email",
-        placeholder: "vaibhavk@kalpriti.com",
-        helper: "We'll use this only to reply to you.",
+        placeholder: "name@company.com",
+        helper: "We will use this only to reply to you.",
       },
       phone: {
-        label: "Phone number",
-        placeholder: "+91 9529985797",
+        label: "Phone / WhatsApp",
+        placeholder: "+91 98765 43210",
         helper: "For quick communication if needed.",
       },
       preferredContact: {
@@ -342,56 +369,40 @@ export const siteContent = {
         options: ["Email", "WhatsApp", "Call"],
       },
       company: {
-        label: "Company and website",
-        placeholder: "Company name, or yourwebsite.com",
-        helper: "So we can see the product.",
+        label: "Product link or company website",
+        placeholder: "yourproduct.com",
+        helper: "So we can see what you make.",
       },
       message: {
-        label: "What are you trying to communicate or launch?",
-        placeholder: "A sentence or two is enough.",
+        label: "What are you trying to launch or communicate?",
+        placeholder: "A sentence or two about your product is plenty.",
         helper: "A sentence or two is enough.",
       },
       challenge: {
-        label: "What's making it difficult?",
+        label: "Primary communication challenge",
         helper: "Choose the closest.",
         options: [
-          "Customers don't understand the product",
-          "We can't explain what makes us different",
-          "People compare us mainly on price",
-          "Our campaigns get attention but not enquiries",
-          "We're launching and don't have the narrative yet",
-          "Something else",
-        ],
-      },
-      launchDate: {
-        label: "Launch or campaign date",
-        placeholder: "e.g. Q3 2026, Next month, or No date yet",
-        helper: "If you have one.",
-      },
-      role: {
-        label: "Your role in the decision",
-        helper: "Choose one.",
-        options: [
-          "I make the final decision",
-          "I'm part of the decision",
-          "I'm gathering information for someone else",
+          "Customers don't understand what the product does",
+          "We're preparing for a major product launch",
+          "Buyers compare us mainly on price",
+          "Our ads get clicks but visitors don't inquire",
         ],
       },
     },
     footerNotice:
-      "We'll talk about scope and investment on a call, once we understand your product.",
+      "We discuss scope and investment on a discovery call once we review your product.",
     thankYou: {
       heading: "Got it. Thank you.",
       subhead:
-        "Your confirmation is on its way to your inbox. I'll read what you've sent and reply personally within 24 hours.",
+        "Your details have arrived in my studio inbox. I'll review what you've sent and reply personally within 24 hours to coordinate our discovery call.",
       nextStepsHeading: "What happens next",
       steps: [
-        "If it looks like a good fit, we'll set up a conversation. Before it, I may ask one question, or for a link to your product or campaign.",
-        "If it isn't a fit right now, I'll tell you honestly and explain why.",
+        "If it looks like a good fit, we'll set up a 30-minute discovery call to explore your communication challenge.",
+        "If it isn't the right fit right now, I'll tell you honestly and explain why.",
       ],
       altAction: {
-        label: "Not ready to talk? Explore the interactive experience →",
-        href: "/#demo",
+        label: "Not ready to talk? Explore the Keus Smart Home POC →",
+        href: "/work",
       },
     },
   },
@@ -402,10 +413,9 @@ export const siteContent = {
   },
   footer: {
     blurb:
-      "KalpRiti, a founder-led creative studio.",
+      "KalpRiti — We change the way complex products are marketed through Interadaptive Campaigns.",
     links: [
       { label: "Discuss a Campaign", href: "/contact" },
     ],
   },
 };
-

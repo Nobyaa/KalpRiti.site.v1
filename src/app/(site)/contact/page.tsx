@@ -8,10 +8,9 @@ import { Section } from "@/components/ui/Section";
 import { Heading } from "@/components/ui/Heading";
 import { Text } from "@/components/ui/Text";
 import { Button } from "@/components/ui/Button";
-import { Glass } from "@/components/ui/Glass";
 import { Hairline } from "@/components/ui/Hairline";
 import { siteContent } from "@/content/siteContent";
-import { CheckCircle2, Clock, ArrowRight, AlertCircle, Loader2 } from "lucide-react";
+import { CheckCircle2, AlertCircle, Loader2, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 function ContactFormInner() {
@@ -25,10 +24,8 @@ function ContactFormInner() {
     phone: "",
     preferredContact: "Email",
     company: "",
-    message: "",
     challenge: "",
-    launchDate: "",
-    role: "",
+    message: "",
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -64,22 +61,13 @@ function ContactFormInner() {
   const validate = () => {
     const errs: Record<string, string> = {};
     if (!formData.name.trim()) {
-      errs.name = "Please provide your name.";
+      errs.name = "Please provide your name and role.";
     }
     if (!formData.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      errs.email = "We need an email we can reply to.";
+      errs.email = "Please provide a valid work email so we can reply.";
     }
     if (!formData.company.trim()) {
-      errs.company = "A website helps us see the product.";
-    }
-    if (!formData.message.trim()) {
-      errs.message = "A sentence or two is enough.";
-    }
-    if (!formData.challenge) {
-      errs.challenge = "Choose the closest option.";
-    }
-    if (!formData.role) {
-      errs.role = "Choose your role in the decision.";
+      errs.company = "A product link or company name helps us review the product.";
     }
     setErrors(errs);
     return Object.keys(errs).length === 0;
@@ -100,13 +88,18 @@ function ContactFormInner() {
       });
 
       if (!res.ok) {
-        throw new Error("Failed to submit form");
+        const errorData = await res.json().catch(() => ({}));
+        throw new Error(
+          errorData.error || "Unable to send inquiry right now. Please email hello@kalpriti.com directly."
+        );
       }
 
       setIsSubmitted(true);
-    } catch (err) {
-      // In development if no webhook is set up yet, fallback gracefully
-      setIsSubmitted(true);
+    } catch (err: any) {
+      setSubmitError(
+        err.message ||
+          "We could not reach the server. Please email Vaibhav directly at hello@kalpriti.com."
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -116,8 +109,8 @@ function ContactFormInner() {
     return (
       <div className="p-8 sm:p-12 lg:p-16 rounded-large border border-accent/20 bg-white/70 shadow-lg space-y-8 animate-in fade-in duration-300">
         <div className="flex items-center gap-3 text-accent">
-          <CheckCircle2 className="w-8 h-8" />
-          <span className="text-xs font-mono font-semibold uppercase tracking-wider">
+          <CheckCircle2 className="w-8 h-8 text-accent" />
+          <span className="text-xs font-mono font-semibold uppercase tracking-wider text-accent-deep">
             Inquiry Received
           </span>
         </div>
@@ -168,10 +161,8 @@ function ContactFormInner() {
                 phone: "",
                 preferredContact: "Email",
                 company: "",
-                message: "",
                 challenge: "",
-                launchDate: "",
-                role: "",
+                message: "",
               });
             }}
             className="text-xs text-ink/50 hover:text-ink underline cursor-pointer"
@@ -187,16 +178,27 @@ function ContactFormInner() {
     <form
       onSubmit={handleSubmit}
       noValidate
-      className="p-6 sm:p-10 lg:p-12 rounded-large border border-ink/10 bg-white/50 backdrop-blur-sm shadow-sm space-y-8"
+      className="p-6 sm:p-10 lg:p-12 rounded-large border border-ink/10 bg-white/50 backdrop-blur-sm shadow-sm space-y-7"
     >
-      {/* Field 1: Name and Email */}
+      {/* Error Banner if API submission fails */}
+      {submitError && (
+        <div className="p-4 sm:p-5 rounded-xl bg-accent/10 border border-accent/30 text-accent-deep space-y-1 animate-in fade-in">
+          <div className="flex items-center gap-2 font-semibold text-sm">
+            <AlertCircle className="w-4 h-4 text-accent flex-shrink-0" />
+            <span>Submission Notice</span>
+          </div>
+          <p className="text-xs sm:text-sm text-ink/85">{submitError}</p>
+        </div>
+      )}
+
+      {/* Field 1: Name and Role */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <div>
           <label
             htmlFor="name"
             className="block text-xs uppercase tracking-wider font-mono font-semibold text-ink/80 mb-2"
           >
-            {contact.fields.name.label} *
+            Your Name & Role *
           </label>
           <input
             id="name"
@@ -206,7 +208,7 @@ function ContactFormInner() {
               setFormData({ ...formData, name: e.target.value });
               if (errors.name) setErrors({ ...errors, name: "" });
             }}
-            placeholder={contact.fields.name.placeholder}
+            placeholder="e.g. Vaibhav, Founder"
             className={cn(
               "w-full px-4 py-3 rounded-xl bg-white/80 border text-sm text-ink placeholder:text-ink/35 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all",
               errors.name ? "border-accent ring-1 ring-accent" : "border-ink/15"
@@ -225,7 +227,7 @@ function ContactFormInner() {
             htmlFor="email"
             className="block text-xs uppercase tracking-wider font-mono font-semibold text-ink/80 mb-2"
           >
-            {contact.fields.email.label} *
+            Work Email *
           </label>
           <input
             id="email"
@@ -235,14 +237,14 @@ function ContactFormInner() {
               setFormData({ ...formData, email: e.target.value });
               if (errors.email) setErrors({ ...errors, email: "" });
             }}
-            placeholder={contact.fields.email.placeholder}
+            placeholder="name@company.com"
             className={cn(
               "w-full px-4 py-3 rounded-xl bg-white/80 border text-sm text-ink placeholder:text-ink/35 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all",
               errors.email ? "border-accent ring-1 ring-accent" : "border-ink/15"
             )}
           />
           <span className="text-[11px] text-ink/50 mt-1 block">
-            {contact.fields.email.helper}
+            We will reply personally within 24 hours.
           </span>
           {errors.email && (
             <p className="text-xs text-accent mt-1 flex items-center gap-1">
@@ -253,14 +255,46 @@ function ContactFormInner() {
         </div>
       </div>
 
-      {/* Field 2: Phone number and Preferred Contact Point */}
+      {/* Field 2: Company / Product Link and Phone / WhatsApp */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div>
+          <label
+            htmlFor="company"
+            className="block text-xs uppercase tracking-wider font-mono font-semibold text-ink/80 mb-2"
+          >
+            Product Link or Company *
+          </label>
+          <input
+            id="company"
+            type="text"
+            value={formData.company}
+            onChange={(e) => {
+              setFormData({ ...formData, company: e.target.value });
+              if (errors.company) setErrors({ ...errors, company: "" });
+            }}
+            placeholder="e.g. yourproduct.com"
+            className={cn(
+              "w-full px-4 py-3 rounded-xl bg-white/80 border text-sm text-ink placeholder:text-ink/35 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all",
+              errors.company ? "border-accent ring-1 ring-accent" : "border-ink/15"
+            )}
+          />
+          <span className="text-[11px] text-ink/50 mt-1 block">
+            So we can review what you make before we talk.
+          </span>
+          {errors.company && (
+            <p className="text-xs text-accent mt-1 flex items-center gap-1">
+              <AlertCircle className="w-3.5 h-3.5" />
+              {errors.company}
+            </p>
+          )}
+        </div>
+
         <div>
           <label
             htmlFor="phone"
             className="block text-xs uppercase tracking-wider font-mono font-semibold text-ink/80 mb-2"
           >
-            {contact.fields.phone.label}
+            Phone / WhatsApp <span className="text-ink/40 font-normal lowercase">(optional)</span>
           </label>
           <input
             id="phone"
@@ -269,133 +303,58 @@ function ContactFormInner() {
             onChange={(e) => {
               setFormData({ ...formData, phone: e.target.value });
             }}
-            placeholder={contact.fields.phone.placeholder}
+            placeholder="+91 98765 43210"
             className="w-full px-4 py-3 rounded-xl bg-white/80 border border-ink/15 text-sm text-ink placeholder:text-ink/35 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all"
           />
-          <span className="text-[11px] text-ink/50 mt-1 block">
-            {contact.fields.phone.helper}
-          </span>
-        </div>
-
-        <div>
-          <label className="block text-xs uppercase tracking-wider font-mono font-semibold text-ink/80 mb-2">
-            {contact.fields.preferredContact.label}
-          </label>
-          <div className="grid grid-cols-3 gap-2">
-            {contact.fields.preferredContact.options.map((option) => {
-              const isSelected = formData.preferredContact === option;
-              return (
-                <button
-                  type="button"
-                  key={option}
-                  onClick={() =>
-                    setFormData({ ...formData, preferredContact: option })
-                  }
-                  className={cn(
-                    "py-3 px-2 text-center rounded-xl text-xs sm:text-sm font-medium border transition-all cursor-pointer focus-visible:outline-accent",
-                    isSelected
-                      ? "bg-accent/10 border-accent text-accent-deep font-semibold"
-                      : "bg-white/60 border-ink/10 text-ink/80 hover:bg-white/90 hover:border-ink/20"
-                  )}
-                >
-                  {option}
-                </button>
-              );
-            })}
+          <div className="flex items-center gap-2 mt-1.5">
+            <span className="text-[11px] text-ink/50">Preferred method:</span>
+            {["Email", "WhatsApp", "Call"].map((m) => (
+              <button
+                type="button"
+                key={m}
+                onClick={() => setFormData({ ...formData, preferredContact: m })}
+                className={cn(
+                  "text-[10px] px-2 py-0.5 rounded-full border transition-all cursor-pointer",
+                  formData.preferredContact === m
+                    ? "bg-accent/10 border-accent text-accent-deep font-semibold"
+                    : "bg-white/60 border-ink/10 text-ink/60 hover:text-ink"
+                )}
+              >
+                {m}
+              </button>
+            ))}
           </div>
-          <span className="text-[11px] text-ink/50 mt-1 block">
-            {contact.fields.preferredContact.helper}
-          </span>
         </div>
       </div>
 
-      {/* Field 2: Company and Website */}
+      {/* Field 3: What is making it hard to explain? (Optional quick pills) */}
       <div>
-        <label
-          htmlFor="company"
-          className="block text-xs uppercase tracking-wider font-mono font-semibold text-ink/80 mb-2"
-        >
-          {contact.fields.company.label} *
-        </label>
-        <input
-          id="company"
-          type="text"
-          value={formData.company}
-          onChange={(e) => {
-            setFormData({ ...formData, company: e.target.value });
-            if (errors.company) setErrors({ ...errors, company: "" });
-          }}
-          placeholder={contact.fields.company.placeholder}
-          className={cn(
-            "w-full px-4 py-3 rounded-xl bg-white/80 border text-sm text-ink placeholder:text-ink/35 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all",
-            errors.company ? "border-accent ring-1 ring-accent" : "border-ink/15"
-          )}
-        />
-        <span className="text-[11px] text-ink/50 mt-1 block">
-          {contact.fields.company.helper}
-        </span>
-        {errors.company && (
-          <p className="text-xs text-accent mt-1 flex items-center gap-1">
-            <AlertCircle className="w-3.5 h-3.5" />
-            {errors.company}
-          </p>
-        )}
-      </div>
-
-      {/* Field 3: What are you trying to communicate or launch? */}
-      <div>
-        <label
-          htmlFor="message"
-          className="block text-xs uppercase tracking-wider font-mono font-semibold text-ink/80 mb-2"
-        >
-          {contact.fields.message.label} *
-        </label>
-        <textarea
-          id="message"
-          rows={3}
-          value={formData.message}
-          onChange={(e) => {
-            setFormData({ ...formData, message: e.target.value });
-            if (errors.message) setErrors({ ...errors, message: "" });
-          }}
-          placeholder={contact.fields.message.placeholder}
-          className={cn(
-            "w-full px-4 py-3 rounded-xl bg-white/80 border text-sm text-ink placeholder:text-ink/35 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all resize-y",
-            errors.message ? "border-accent ring-1 ring-accent" : "border-ink/15"
-          )}
-        />
-        <span className="text-[11px] text-ink/50 mt-1 block">
-          {contact.fields.message.helper}
-        </span>
-        {errors.message && (
-          <p className="text-xs text-accent mt-1 flex items-center gap-1">
-            <AlertCircle className="w-3.5 h-3.5" />
-            {errors.message}
-          </p>
-        )}
-      </div>
-
-      {/* Field 4: What's making it difficult? */}
-      <div>
-        <label className="block text-xs uppercase tracking-wider font-mono font-semibold text-ink/80 mb-2">
-          {contact.fields.challenge.label} *
+        <label className="block text-xs uppercase tracking-wider font-mono font-semibold text-ink/80 mb-1.5">
+          Primary Communication Challenge <span className="text-ink/40 font-normal lowercase">(optional)</span>
         </label>
         <span className="text-[11px] text-ink/50 mb-3 block">
-          {contact.fields.challenge.helper}
+          Select what sounds closest, or describe below.
         </span>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-          {contact.fields.challenge.options.map((opt) => {
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          {[
+            "Customers don't understand what the product does",
+            "We're preparing for a major product launch",
+            "Buyers compare us mainly on price",
+            "Our ads get clicks but visitors don't inquire",
+          ].map((opt) => {
             const isSelected = formData.challenge === opt;
             return (
               <button
                 type="button"
                 key={opt}
                 onClick={() => {
-                  setFormData({ ...formData, challenge: opt });
-                  if (errors.challenge) setErrors({ ...errors, challenge: "" });
+                  setFormData({
+                    ...formData,
+                    challenge: isSelected ? "" : opt,
+                  });
                 }}
                 className={cn(
-                  "text-left p-3 rounded-xl text-xs sm:text-sm font-medium border transition-all cursor-pointer focus-visible:outline-accent",
+                  "text-left p-2.5 rounded-xl text-xs font-medium border transition-all cursor-pointer focus-visible:outline-accent",
                   isSelected
                     ? "bg-accent/10 border-accent text-accent-deep font-semibold"
                     : "bg-white/60 border-ink/10 text-ink/80 hover:bg-white/90 hover:border-ink/20"
@@ -406,97 +365,51 @@ function ContactFormInner() {
             );
           })}
         </div>
-        {errors.challenge && (
-          <p className="text-xs text-accent mt-1.5 flex items-center gap-1">
-            <AlertCircle className="w-3.5 h-3.5" />
-            {errors.challenge}
-          </p>
-        )}
       </div>
 
-      {/* Field 5: Launch or campaign date */}
+      {/* Field 4: Optional note on what you're trying to launch */}
       <div>
         <label
-          htmlFor="launchDate"
+          htmlFor="message"
           className="block text-xs uppercase tracking-wider font-mono font-semibold text-ink/80 mb-2"
         >
-          {contact.fields.launchDate.label}
+          What are you trying to launch or communicate? <span className="text-ink/40 font-normal lowercase">(optional)</span>
         </label>
-        <input
-          id="launchDate"
-          type="text"
-          value={formData.launchDate}
-          onChange={(e) =>
-            setFormData({ ...formData, launchDate: e.target.value })
-          }
-          placeholder={contact.fields.launchDate.placeholder}
-          className="w-full px-4 py-3 rounded-xl bg-white/80 border border-ink/15 text-sm text-ink placeholder:text-ink/35 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all"
+        <textarea
+          id="message"
+          rows={3}
+          value={formData.message}
+          onChange={(e) => {
+            setFormData({ ...formData, message: e.target.value });
+          }}
+          placeholder="A sentence or two about your product or launch timeline is plenty."
+          className="w-full px-4 py-3 rounded-xl bg-white/80 border border-ink/15 text-sm text-ink placeholder:text-ink/35 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all resize-y"
         />
-        <span className="text-[11px] text-ink/50 mt-1 block">
-          {contact.fields.launchDate.helper}
-        </span>
-      </div>
-
-      {/* Field 6: Your role in the decision */}
-      <div>
-        <label className="block text-xs uppercase tracking-wider font-mono font-semibold text-ink/80 mb-2">
-          {contact.fields.role.label} *
-        </label>
-        <span className="text-[11px] text-ink/50 mb-3 block">
-          {contact.fields.role.helper}
-        </span>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
-          {contact.fields.role.options.map((roleOpt) => {
-            const isSelected = formData.role === roleOpt;
-            return (
-              <button
-                type="button"
-                key={roleOpt}
-                onClick={() => {
-                  setFormData({ ...formData, role: roleOpt });
-                  if (errors.role) setErrors({ ...errors, role: "" });
-                }}
-                className={cn(
-                  "text-left p-3 rounded-xl text-xs sm:text-sm font-medium border transition-all cursor-pointer focus-visible:outline-accent",
-                  isSelected
-                    ? "bg-accent/10 border-accent text-accent-deep font-semibold"
-                    : "bg-white/60 border-ink/10 text-ink/80 hover:bg-white/90 hover:border-ink/20"
-                )}
-              >
-                {roleOpt}
-              </button>
-            );
-          })}
-        </div>
-        {errors.role && (
-          <p className="text-xs text-accent mt-1.5 flex items-center gap-1">
-            <AlertCircle className="w-3.5 h-3.5" />
-            {errors.role}
-          </p>
-        )}
       </div>
 
       <Hairline variant="horizontal" />
 
-      {/* Submit Button & Notice */}
-      <div className="space-y-4 pt-2">
+      {/* Submit Action */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-1">
         <Button
           type="submit"
           size="lg"
           disabled={isSubmitting}
-          className="w-full sm:w-auto min-w-[200px]"
+          className="w-full sm:w-auto min-w-[220px]"
         >
           {isSubmitting ? (
             <span className="inline-flex items-center gap-2">
               <Loader2 className="w-4 h-4 animate-spin" />
-              Sending...
+              Sending Inquiry...
             </span>
           ) : (
-            "Send"
+            <span className="inline-flex items-center gap-2">
+              Request Discovery Call <ArrowRight className="w-4 h-4" />
+            </span>
           )}
         </Button>
         <p className="text-xs text-ink/60">
-          {contact.footerNotice}
+          No hard sales pitch. If we aren&apos;t the right fit, we will tell you straight away.
         </p>
       </div>
     </form>
@@ -512,14 +425,14 @@ export default function ContactPage() {
       <Section spacing="default" className="pt-6 sm:pt-10 md:pt-12 pb-6">
         <Container size="narrow">
           <div className="text-center space-y-3">
-            <span className="text-xs uppercase tracking-widest text-accent font-semibold font-mono block">
+            <span className="text-xs uppercase tracking-widest text-accent-deep font-semibold font-mono block">
               Direct Conversation
             </span>
             <Heading as="h1" size="display" className="text-ink">
-              {contact.header.heading}
+              Discuss a Campaign.
             </Heading>
-            <Text size="lead" className="mx-auto text-ink/80">
-              {contact.header.subhead}
+            <Text size="lead" className="mx-auto text-ink/80 max-w-xl">
+              Tell us what you make and what you are trying to communicate. Vaibhav will review it and reply personally within 24 hours to schedule a 30-minute discovery call.
             </Text>
           </div>
         </Container>

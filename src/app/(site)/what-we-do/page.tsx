@@ -7,12 +7,12 @@ import { Button } from "@/components/ui/Button";
 import { Glass } from "@/components/ui/Glass";
 import { Hairline } from "@/components/ui/Hairline";
 import { siteContent } from "@/content/siteContent";
-import { Check, X, ArrowRight } from "lucide-react";
+import { Check, X, ArrowRight, Sparkles } from "lucide-react";
 
 export const metadata = {
-  title: "What We Do — KalpRiti",
+  title: "What We Do — Interadaptive Campaign Engagements",
   description:
-    "Three ways to work with us: Campaign Strategy Sprint, Interactive Campaign Experience, and Campaign Growth Partner.",
+    "Explore our flagship Interadaptive Campaign Experience and Strategy Blueprint for founders of complex products.",
 };
 
 export default function WhatWeDoPage() {
@@ -24,7 +24,7 @@ export default function WhatWeDoPage() {
       <Section spacing="default" className="pt-6 sm:pt-10 md:pt-12 pb-6">
         <Container>
           <div className="max-w-3xl">
-            <span className="text-xs uppercase tracking-widest text-accent font-semibold font-mono mb-2 block">
+            <span className="text-xs uppercase tracking-widest text-accent-deep font-semibold font-mono mb-2 block">
               Services & Engagements
             </span>
             <Heading as="h1" size="display" className="mb-4">
@@ -37,20 +37,36 @@ export default function WhatWeDoPage() {
         </Container>
       </Section>
 
-      {/* The Three Offers */}
+      {/* The Engagements */}
       <Section spacing="default" className="pt-0">
         <Container>
           <div className="space-y-12">
             {whatWeDo.offers.map((offer) => (
               <Glass
                 key={offer.id}
-                className="p-6 sm:p-10 lg:p-12 border-ink/10 hover:border-ink/20 transition-all"
+                className={`p-6 sm:p-10 lg:p-12 transition-all ${
+                  offer.flagship
+                    ? "border-accent/40 bg-white/60 shadow-lg ring-1 ring-accent/30"
+                    : "border-ink/10 hover:border-ink/20"
+                }`}
               >
                 <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-8 mb-8">
                   <div className="max-w-2xl">
-                    <span className="text-xs font-mono font-bold text-accent tracking-widest block mb-2">
-                      OFFER {offer.num}
-                    </span>
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="text-xs font-mono font-bold text-accent-deep tracking-widest">
+                        ENGAGEMENT {offer.num}
+                      </span>
+                      {offer.flagship ? (
+                        <span className="inline-flex items-center gap-1 text-[10px] font-mono font-bold tracking-wider text-accent bg-accent/10 border border-accent/20 px-2.5 py-0.5 rounded-full">
+                          <Sparkles className="w-3 h-3" />
+                          FLAGSHIP SOLUTION
+                        </span>
+                      ) : (
+                        <span className="text-[10px] font-mono font-bold tracking-wider text-ink/50 bg-ink/5 px-2.5 py-0.5 rounded-full">
+                          {offer.tag}
+                        </span>
+                      )}
+                    </div>
                     <Heading as="h2" size="h2" className="mb-3">
                       {offer.title}
                     </Heading>
@@ -60,8 +76,8 @@ export default function WhatWeDoPage() {
                   </div>
 
                   <div>
-                    <Button href="/contact" size="md">
-                      Discuss a Campaign
+                    <Button href={`/contact?intent=${offer.id}`} size="md">
+                      Discuss This Engagement
                     </Button>
                   </div>
                 </div>
@@ -72,7 +88,7 @@ export default function WhatWeDoPage() {
                   {/* What you get */}
                   <div className="space-y-4">
                     <h4 className="text-xs uppercase tracking-widest font-mono font-bold text-ink/70">
-                      What you get
+                      What is included
                     </h4>
                     <ul className="space-y-2.5">
                       {offer.included.map((item, idx) => (
@@ -89,7 +105,7 @@ export default function WhatWeDoPage() {
                   {/* Not included */}
                   <div className="space-y-4">
                     <h4 className="text-xs uppercase tracking-widest font-mono font-bold text-accent-deep/80">
-                      Not included
+                      What is excluded
                     </h4>
                     <ul className="space-y-2.5">
                       {offer.notIncluded.map((item, idx) => (
@@ -105,7 +121,7 @@ export default function WhatWeDoPage() {
                     {"noteOnExisting" in offer && (
                       <div className="mt-4 p-4 rounded-xl bg-ink/5 border border-ink/10 text-xs sm:text-sm text-ink/75 leading-relaxed">
                         <strong className="font-semibold text-ink">
-                          A note on what you already have:
+                          A note on existing assets:
                         </strong>{" "}
                         {offer.noteOnExisting}
                       </div>
@@ -121,8 +137,8 @@ export default function WhatWeDoPage() {
       {/* What we don't promise */}
       <Section spacing="default" className="border-t border-ink/10 bg-ink/[0.015]">
         <Container size="narrow">
-          <div className="p-8 sm:p-10 rounded-card bg-highlight/25 border border-highlight/70 text-center space-y-4">
-            <span className="text-xs font-mono font-bold text-accent uppercase tracking-widest">
+          <div className="p-8 sm:p-10 rounded-card bg-highlight/30 border border-highlight/80 text-center space-y-4">
+            <span className="text-xs font-mono font-bold text-accent-deep uppercase tracking-widest">
               Integrity First
             </span>
             <Heading as="h2" size="h3">
@@ -180,7 +196,7 @@ export default function WhatWeDoPage() {
       <Section spacing="default" className="border-t border-ink/5 bg-ink/[0.01]">
         <Container>
           <div className="text-center max-w-2xl mx-auto mb-10">
-            <span className="text-xs uppercase tracking-widest text-accent font-semibold font-mono block mb-2">
+            <span className="text-xs uppercase tracking-widest text-accent-deep font-semibold font-mono block mb-2">
               Workflow Progression
             </span>
             <Heading as="h2" size="h2" className="mb-2">
@@ -191,7 +207,7 @@ export default function WhatWeDoPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {whatWeDo.process.steps.map((step) => (
               <Glass key={step.num} className="p-6 relative">
-                <span className="text-xs font-mono font-bold text-accent px-2 py-0.5 rounded-full bg-accent/10 inline-block mb-4">
+                <span className="text-xs font-mono font-bold text-accent-deep px-2 py-0.5 rounded-full bg-accent/10 inline-block mb-4">
                   STEP 0{step.num}
                 </span>
                 <h4 className="font-heading text-xl font-bold text-ink mb-2">

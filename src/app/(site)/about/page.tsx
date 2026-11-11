@@ -1,19 +1,19 @@
 import React from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { Heading } from "@/components/ui/Heading";
 import { Text } from "@/components/ui/Text";
 import { Button } from "@/components/ui/Button";
-import { Glass } from "@/components/ui/Glass";
 import { Hairline } from "@/components/ui/Hairline";
 import { siteContent } from "@/content/siteContent";
 import { ArrowUpRight } from "lucide-react";
 
 export const metadata = {
-  title: "About — KalpRiti",
+  title: "About — Founder-Led on Purpose",
   description:
-    "Founder-led, on purpose. Learn about Vaibhav Kumbhar and the thinking behind KalpRiti.",
+    "Learn about Vaibhav Kumbhar and why KalpRiti was founded to change how complex products are marketed through Interadaptive Campaigns.",
 };
 
 export default function AboutPage() {
@@ -25,7 +25,7 @@ export default function AboutPage() {
       <Section spacing="default" className="pt-6 sm:pt-10 md:pt-12 pb-6">
         <Container size="narrow">
           <div className="text-center space-y-3">
-            <span className="text-xs uppercase tracking-widest text-accent font-semibold font-mono block">
+            <span className="text-xs uppercase tracking-widest text-accent-deep font-semibold font-mono block">
               Studio & Leadership
             </span>
             <Heading as="h1" size="display" className="text-ink">
@@ -36,20 +36,30 @@ export default function AboutPage() {
       </Section>
 
       {/* Founder Story */}
-      <Section spacing="default" className="pt-0">
+      <Section spacing="default" className="pt-0 pb-16">
         <Container size="narrow">
           <div className="p-6 sm:p-10 lg:p-12 rounded-large border border-ink/10 bg-white/40 space-y-8">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-ink/10 pb-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5 border-b border-ink/10 pb-6">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-accent/15 text-accent flex items-center justify-center font-heading font-bold text-lg">
-                  VK
+                <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-accent/40 shadow-sm flex-shrink-0 bg-ink/5">
+                  <Image
+                    src="/Assets/founder.jpg"
+                    alt="Vaibhav Kumbhar — Founder of KalpRiti"
+                    fill
+                    sizes="80px"
+                    className="object-cover object-center"
+                    priority
+                  />
                 </div>
                 <div>
-                  <h3 className="font-heading text-lg font-bold text-ink">
+                  <h3 className="font-heading text-xl font-bold text-ink">
                     Vaibhav Kumbhar
                   </h3>
-                  <p className="text-xs text-ink/60 font-sans mt-0.5">
-                    Founder, KalpRiti
+                  <p className="text-xs font-mono text-accent-deep font-medium mt-0.5">
+                    Founder & Creative Strategist, KalpRiti
+                  </p>
+                  <p className="text-xs text-ink/60 mt-0.5">
+                    Creative Direction · Narrative Architecture · Campaign Technology
                   </p>
                 </div>
               </div>
@@ -85,7 +95,7 @@ export default function AboutPage() {
 
             {/* What we believe */}
             <div className="space-y-3">
-              <span className="text-xs uppercase tracking-widest font-mono font-bold text-accent block">
+              <span className="text-xs uppercase tracking-widest font-mono font-bold text-accent-deep block">
                 {about.beliefs.heading}
               </span>
               <p className="font-heading text-xl sm:text-2xl text-ink font-semibold leading-snug">
@@ -110,7 +120,7 @@ export default function AboutPage() {
             {/* Closing CTA */}
             <div className="pt-6 border-t border-ink/10 flex flex-col sm:flex-row items-center justify-between gap-4">
               <p className="text-xs text-ink/60">
-                Let&apos;s build an experience for your product.
+                Let&apos;s build an interadaptive campaign for your product.
               </p>
               <Button href="/contact" size="md">
                 Discuss a Campaign
@@ -122,4 +132,3 @@ export default function AboutPage() {
     </div>
   );
 }
-

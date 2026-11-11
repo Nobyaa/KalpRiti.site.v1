@@ -120,7 +120,15 @@ export const Footer: React.FC = () => {
         </div>
 
         <div className="mt-8 pt-5 border-t border-ink/5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-ink/50">
-          <p>© {new Date().getFullYear()} KalpRiti. All rights reserved.</p>
+          <div className="flex items-center gap-4">
+            <p>© {new Date().getFullYear()} KalpRiti. All rights reserved.</p>
+            <Link
+              href="/privacy"
+              className="hover:text-accent transition-colors underline underline-offset-2"
+            >
+              Privacy Policy
+            </Link>
+          </div>
           <p className="text-[11px] text-ink/40">
             Designed as one connected campaign experience.
           </p>

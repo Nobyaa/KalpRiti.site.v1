@@ -224,7 +224,7 @@ export default function HomePage() {
                 </div>
                 
                 {/* Visual Preview Box */}
-                <div className="aspect-video w-full rounded-xl bg-gradient-to-br from-ink/90 to-ink text-white p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden shadow-md">
+                <div className="aspect-video w-full rounded-xl bg-ink text-white p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden shadow-md">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-mono text-white/70 tracking-wider">
                       &ldquo;Test Your Absence&rdquo;

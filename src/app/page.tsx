@@ -241,7 +241,7 @@ export default function HomePage() {
 
                   <div className="space-y-2 max-w-md">
                     <h4 className="font-heading font-bold text-xl sm:text-2xl text-white">
-                      From an emotional story into a choice-driven 3D experience.
+                      From an emotional story into a choice-driven <span className="font-sans font-bold">3</span>D experience.
                     </h4>
                     <p className="text-xs text-white/70 leading-relaxed">
                       How we answered post-installation reliability concerns before customers had to ask.

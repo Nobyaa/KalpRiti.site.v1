@@ -35,7 +35,7 @@ export default function PrivacyPage() {
           <div className="p-8 sm:p-12 rounded-large border border-ink/10 bg-white/40 space-y-8 text-ink/85 leading-relaxed text-sm sm:text-base">
             <div className="space-y-3">
               <h2 className="font-heading text-xl font-bold text-ink">
-                1. What information we collect
+                <span className="font-sans font-bold">1</span>. What information we collect
               </h2>
               <p>
                 When you submit an enquiry through our contact form, we collect the details you explicitly provide: your name, work email address, company name or product website, and any notes or challenge options you choose to share.
@@ -44,7 +44,7 @@ export default function PrivacyPage() {
 
             <div className="space-y-3">
               <h2 className="font-heading text-xl font-bold text-ink">
-                2. How we use your information
+                <span className="font-sans font-bold">2</span>. How we use your information
               </h2>
               <p>
                 We use this information exclusively to review your product and reply directly to your campaign enquiry. We will never sell, lease, rent, or trade your contact details to third parties or use them for unsolicited promotional spam.
@@ -53,7 +53,7 @@ export default function PrivacyPage() {
 
             <div className="space-y-3">
               <h2 className="font-heading text-xl font-bold text-ink">
-                3. Interactive experiences & zero hidden tracking
+                <span className="font-sans font-bold">3</span>. Interactive experiences & zero hidden tracking
               </h2>
               <p>
                 Our interactive and interadaptive demonstrations respond only to explicit choices you make on screen. We do not run hidden session-recording scripts, keystroke loggers, or invasive tracking cookies to manipulate what you see.
@@ -62,7 +62,7 @@ export default function PrivacyPage() {
 
             <div className="space-y-3">
               <h2 className="font-heading text-xl font-bold text-ink">
-                4. Data storage & deletion requests
+                <span className="font-sans font-bold">4</span>. Data storage & deletion requests
               </h2>
               <p>
                 Your submitted enquiries are delivered securely to our studio inbox and inquiry dashboard. If at any point you wish for your details to be permanently deleted from our records, simply write to us at{" "}

@@ -17,7 +17,7 @@ module.exports = {
         highlight: "var(--highlight)",
       },
       fontFamily: {
-        heading: ["var(--font-qurova)", "system-ui", "sans-serif"],
+        heading: ["AltoneNumbers", "var(--font-qurova)", "var(--font-altone)", "system-ui", "sans-serif"],
         sans: ["var(--font-altone)", "system-ui", "sans-serif"],
       },
       borderRadius: {
